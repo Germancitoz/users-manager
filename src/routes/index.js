@@ -1,3 +1,5 @@
+'use strict'
+
 import express from "express";
 import { errorUtil } from "../utils/error.js";
 const indexRouter = express.Router();
