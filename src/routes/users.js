@@ -3,7 +3,7 @@
 import express from "express";
 const router = express.Router();
 
-import { controller as userController } from "../controllers/users.js";
+import { controller as userController } from "../controllers/userController.js";
 
 router.get("/", userController.getUsers);
 router.get("/:id", userController.getUser);
