@@ -5,7 +5,8 @@
   "main": "./src/app.js",
   "type": "module",
   "scripts": {
-    "start:prod": "nodemon ./src/app.js"
+    "start:prod": "nodemon ./src/app.js",
+    "start:docs": "jsdoc -c /jsdoc.json"
   },
   "repository": {
     "type": "git",
