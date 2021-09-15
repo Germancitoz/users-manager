@@ -3,16 +3,15 @@
 //import User from "../models/user.js";
 
 import HttpError from "../utils/httpError.js";
-
-const data = {
-    "pito" : "pito"
-}
+import User from "../models/user.js";
 
 export default class UserController {
-    static create = (request, response) => {
+    static create = async (request, response) => {
         try {
-            const { name, email, password } = request.body;
-            response.status(200).json({ name, email, password });
+            const { name, email, password, age } = request.body;
+            const user = new User({ name, email, password, age });
+            await user.save();
+            response.status(200).json(user);
         } catch (error) {
             HttpError.send(
                 response,
@@ -22,17 +21,12 @@ export default class UserController {
         }
     };
 
-    static get = (request, response) => {
+    static get = async (request, response) => {
         try {
             const { id } = request.params;
-            if (data[id] === undefined) {
-                HttpError.send(
-                    response,
-                    400,
-                    `User with id ${id} does not exist`
-                );
-            }
-            response.status(200).json(data[id]);
+            let user = await User.findById(id);
+            if (user === null) user = {};
+            response.status(200).json(user);
         } catch (error) {
             HttpError.send(
                 response,
@@ -42,11 +36,12 @@ export default class UserController {
         }
     };
 
-    static getAll = (request, response) => {
+    static getAll = async (request, response) => {
         try {
             const { limit } = request.query;
-            const users = limit > 0 ? data.slice(0, limit) : data;
-            response.status(200).json(users);
+            const users = await User.find({});
+            const usersFixed = limit === undefined ? users : users.slice(0 , limit);
+            response.status(200).json(usersFixed);
         } catch (error) {
             HttpError.send(
                 response,
@@ -56,10 +51,11 @@ export default class UserController {
         }
     };
 
-    static delete = (request, response) => {
+    static delete = async (request, response) => {
         try {
             const { id } = request.params;
-            response.status(200).json({ id });
+            const user = await User.findByIdAndDelete(id);
+            response.status(200).json({ user });
         } catch (error) {
             HttpError.send(
                 response,

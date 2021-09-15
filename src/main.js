@@ -9,7 +9,7 @@ import Log from "./utils/log.js";
 const runServer = async () => {
     try {
         Log.send("CURRENT", "Connecting to MONGODB server");
-        await mongoose.connect(config.database.URL);
+        await mongoose.connect(config.database.URL, { useNewUrlParser: true, useUnifiedTopology: true });
         Log.send("SUCCESS", "Connected to MONGODB server");
 
         app.listen(config.server.PORT);
