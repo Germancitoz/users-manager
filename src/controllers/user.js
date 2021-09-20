@@ -3,12 +3,14 @@
 //import User from "../models/user.js";
 
 import HttpError from "../utils/httpError.js";
+import bcrypt from "bcrypt";
 import User from "../models/user.js";
 
 export default class UserController {
     static create = async (request, response) => {
         try {
-            const { name, email, password, age } = request.body;
+            let { name, email, password, age } = request.body;
+            password = await bcrypt.hash(password, 10);
             const user = new User({ name, email, password, age });
             await user.save();
             response.status(200).json(user);
