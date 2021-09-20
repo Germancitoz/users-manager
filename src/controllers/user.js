@@ -57,7 +57,7 @@ export default class UserController {
         try {
             const { id } = request.params;
             const user = await User.findByIdAndDelete(id);
-            response.status(200).json({ user });
+            response.status(200).json(user);
         } catch (error) {
             HttpError.send(
                 response,
