@@ -23,6 +23,12 @@ const userSchema = new mongoose.Schema({
         default: 0,
         required: true
     },
+}, {
+    "toJSON" : {
+        transform: (document, returnedObject) => {
+            delete returnedObject.password;
+        }
+    }
 });
 
 const User = mongoose.model("User", userSchema);
