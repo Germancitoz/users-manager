@@ -1,7 +1,5 @@
 "use strict";
 
-//import User from "../models/user.js";
-
 import HttpError from "../utils/httpError.js";
 import bcrypt from "bcrypt";
 import User from "../models/user.js";
@@ -42,7 +40,8 @@ export default class UserController {
         try {
             const { limit } = request.query;
             const users = await User.find({});
-            const usersFixed = limit === undefined ? users : users.slice(0 , limit);
+            const usersFixed =
+                limit === undefined ? users : users.slice(0, limit);
             response.status(200).json(usersFixed);
         } catch (error) {
             HttpError.send(
