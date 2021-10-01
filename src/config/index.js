@@ -3,13 +3,20 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+const {
+    SERVER_URL = 'http://localhost',
+    SERVER_PORT = 3000,
+    DATABASE_URL = 'mongodb://localhost:27017/testing'
+} = process.env
+
 const config = {
     server: {
-        URL: process.env.SERVER_URL || "http://localhost",
-        PORT: process.env.SERVER_PORT || 3000,
+        URL: SERVER_URL,
+        PORT: SERVER_PORT,
     },
     database: {
-        URL: process.env.DATABASE_URL || "mongodb://localhost:27017/testing",
+        URL: DATABASE_URL,
     },
 };
+
 export default config;
