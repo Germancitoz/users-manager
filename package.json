@@ -1,19 +1,22 @@
 {
-  "name": "users-manager",
+  "name": "users.manager.api",
   "version": "1.0.0",
-  "description": "",
+  "description": "users.manager api",
   "main": "./src/app.js",
   "type": "module",
   "scripts": {
-    "start:prod": "nodemon ./src/main.js",
-    "start:docs": "jsdoc -c /jsdoc.json"
+    "server": "nodemon ./src/main.js",
+    "docs": "jsdoc -c /jsdoc.json"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Germancitoz/users-manager.git"
+    "url": "git+https://github.com/Germancitoz/users.manager.api.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "nodejs",
+    "api"
+  ],
+  "author": "Germancito",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Germancitoz/users-manager/issues"
