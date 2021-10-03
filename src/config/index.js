@@ -4,10 +4,10 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const {
-    SERVER_URL = 'http://localhost',
+    SERVER_URL = "http://localhost",
     SERVER_PORT = 3000,
-    DATABASE_URL = 'mongodb://localhost:27017/testing'
-} = process.env
+    DATABASE_URL = "mongodb://localhost:27017/testing",
+} = process.env;
 
 const config = {
     server: {
