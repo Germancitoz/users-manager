@@ -3,14 +3,19 @@
 import express from "express";
 const userRouter = express.Router();
 
-import UserValidator from "../validators/user.js";
-import UserController from "../controllers/user.js";
+import { validateCreateUser } from "../validators/user.js";
+import {
+    createUser,
+    getUserById,
+    getAllUsers,
+    deleteUser,
+} from "../controllers/user.js";
 
-userRouter.get("/", UserController.getAll);
-userRouter.get("/:id", UserController.get);
+userRouter.get("/", getAllUsers);
+userRouter.get("/:id", getUserById);
 
-userRouter.post("/create", UserValidator.create, UserController.create);
+userRouter.post("/create", validateCreateUser, createUser);
 
-userRouter.delete("/:id", UserController.delete);
+userRouter.delete("/:id", deleteUser);
 
 export default userRouter;
