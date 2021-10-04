@@ -3,6 +3,7 @@
 import express from "express";
 const userRouter = express.Router();
 
+import auth from "../middleware/auth.js";
 import { validateCreateUser } from "../validators/user.js";
 import {
     createUser,
@@ -14,7 +15,7 @@ import {
 userRouter.get("/", getAllUsers);
 userRouter.get("/:id", getUserById);
 
-userRouter.post("/create", validateCreateUser, createUser);
+userRouter.post("/create", auth, validateCreateUser, createUser);
 
 userRouter.delete("/:id", deleteUser);
 
