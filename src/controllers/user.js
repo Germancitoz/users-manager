@@ -2,6 +2,7 @@
 
 import HttpError from "../utils/httpError.js";
 import bcrypt from "bcrypt";
+
 import User from "../models/user.js";
 
 const createUser = async (request, response) => {
@@ -50,7 +51,7 @@ const getAllUsers = async (request, response) => {
     }
 };
 
-const deleteUser = async (req, res) => {
+const deleteUser = async (request, response) => {
     const { id } = request.params;
     try {
         const user = await User.findByIdAndDelete(id);
@@ -64,7 +65,7 @@ const deleteUser = async (req, res) => {
     }
 };
 
-exports = {
+export {
     createUser,
     getUserById,
     getAllUsers,
