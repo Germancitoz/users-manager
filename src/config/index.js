@@ -10,7 +10,7 @@ const {
     DATABASE_URL = "mongodb://localhost:27017/testing",
 
     AUTH_SECRET = "SECRET",
-    AUTH_EXPIRE_TIME = 60 * 60 * 24 * 7
+    AUTH_EXPIRE_TIME = 60 * 60 * 24 * 7,
 } = process.env;
 
 const config = {
@@ -23,7 +23,7 @@ const config = {
     },
     auth: {
         SECRET: AUTH_SECRET,
-        EXPIRE_TIME: AUTH_EXPIRE_TIME
+        EXPIRE_TIME: AUTH_EXPIRE_TIME,
     },
 };
 
