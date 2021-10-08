@@ -2,7 +2,7 @@
   "name": "users.manager.api",
   "version": "1.0.0",
   "description": "users.manager api",
-  "main": "./src/app.js",
+  "main": "./src/main.js",
   "type": "module",
   "scripts": {
     "server": "nodemon ./src/main.js",
