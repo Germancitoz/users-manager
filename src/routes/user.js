@@ -1,12 +1,11 @@
-"use strict";
-
 import express from "express";
 const userRouter = express.Router();
 
 import auth from "../middleware/auth.js";
-import { validateCreateUser } from "../validators/user.js";
+import { validateRegisterUser, validateLoginUser } from "../validators/user.js";
 import {
-    createUser,
+    registerUser,
+    loginUser,
     getUserById,
     getAllUsers,
     deleteUser,
@@ -15,7 +14,8 @@ import {
 userRouter.get("/", getAllUsers);
 userRouter.get("/:id", getUserById);
 
-userRouter.post("/create", auth, validateCreateUser, createUser);
+userRouter.post("/register", validateRegisterUser, registerUser);
+userRouter.post("/login", validateLoginUser, loginUser);
 
 userRouter.delete("/:id", deleteUser);
 

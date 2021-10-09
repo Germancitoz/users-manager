@@ -1,9 +1,6 @@
-"use strict";
-
 import { check, validationResult } from "express-validator";
-import HttpError from "../utils/httpError.js";
 
-export const validateCreateUser = [
+export const validateRegisterUser = [
     check("name").exists().isString(),
 
     check("email").exists().isEmail(),
@@ -15,8 +12,22 @@ export const validateCreateUser = [
     (request, response, next) => {
         const errors = validationResult(request);
         if (!errors.isEmpty()) {
-            return HttpError.send(response, 400, { errors: errors.array() });
+            return response.status(400).json({ error : errors.array() });
         }
         return next();
     },
 ];
+
+export const validateLoginUser = [
+    check("email").exists().isEmail(),
+
+    check("password").exists(),
+
+    (request, response, next) => {
+        const errors = validationResult(request);
+        if (!errors.isEmpty()) {
+            return response.status(400).json({ error : errors.array() });
+        }
+        return next();
+    },
+]
