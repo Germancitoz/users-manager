@@ -1,5 +1,3 @@
-"use strict";
-
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
@@ -22,7 +20,6 @@ const userSchema = new mongoose.Schema({
 }, {
     "toJSON" : {
         transform: (document, returnedObject) => {
-            delete returnedObject.password;
             delete returnedObject.__v;
         }
     }
