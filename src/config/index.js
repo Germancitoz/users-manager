@@ -1,5 +1,3 @@
-"use strict";
-
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -13,18 +11,16 @@ const {
     AUTH_EXPIRE_TIME = 60 * 60 * 24 * 7,
 } = process.env;
 
-const config = {
-    server: {
-        URL: SERVER_URL,
-        PORT: SERVER_PORT,
-    },
-    database: {
-        URL: DATABASE_URL,
-    },
-    auth: {
-        SECRET: AUTH_SECRET,
-        EXPIRE_TIME: AUTH_EXPIRE_TIME,
-    },
+export const serverConfig = {
+    URL: SERVER_URL,
+    PORT: SERVER_PORT,
 };
 
-export default config;
+export const databaseConfig = {
+    URL: DATABASE_URL,
+};
+
+export const authConfig = {
+    SECRET: AUTH_SECRET,
+    EXPIRE_TIME: AUTH_EXPIRE_TIME,
+};

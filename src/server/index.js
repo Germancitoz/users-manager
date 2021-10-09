@@ -1,11 +1,12 @@
-"use strict";
-
 import express from "express";
 import morgan from "morgan";
 
 //Routes
 import indexRouter from "../routes/index.js";
 import userRouter from "../routes/user.js";
+
+//Middleware
+import notFound from "../middleware/notFound.js";
 
 const app = express();
 
@@ -19,8 +20,6 @@ app.use("/", indexRouter);
 app.use("/user", userRouter);
 
 //Middleware Routes
-app.use((request, response, next) => {
-    response.status(404).json({ error: "Not found" });
-});
+app.use(notFound);
 
-export { app };
+export default app;
