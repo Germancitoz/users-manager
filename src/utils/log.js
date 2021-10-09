@@ -19,5 +19,6 @@ export default class Log {
     static send(type, message) {
         const template = `[${type}] : ${message}`;
         this.save(template);
+        console.log(template); //Only for (server console)
     };
 };
