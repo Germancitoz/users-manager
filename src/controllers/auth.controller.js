@@ -15,9 +15,8 @@ export const registerUser = async (request, response) => {
 
         const user = new User({ name, email, password: hashedPassword, age });
         await user.save();
-        
-        const token = createToken(user);
-        response.status(200).json({ error: null, token });
+
+        response.status(200).json({ error: null, user });
     } catch (error) {
         response.status(400).json({ error: error });
     }
