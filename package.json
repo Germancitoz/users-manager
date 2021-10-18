@@ -5,8 +5,9 @@
   "main": "./src/main.js",
   "type": "module",
   "scripts": {
-    "server:dev": "nodemon ./src/main.js",
-    "server:prod": "node ./src/main.js",
+    "server:build": "npm i",
+    "server:develop": "npm run server:build && nodemon ./src/main.js",
+    "server:production": "npm run server:build && node ./src/main.js",
     "docs": "jsdoc -c /jsdoc.json"
   },
   "repository": {

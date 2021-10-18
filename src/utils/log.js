@@ -16,8 +16,9 @@ const save = (message) => {
  */
 const send = (type, message) => {
   const template = `[${type}] : ${message}`;
-  this.save(template);
+  save(template);
   console.log(template); //Only for (server console)
 };
 
+const Log = { save, send };
 export default Log;
