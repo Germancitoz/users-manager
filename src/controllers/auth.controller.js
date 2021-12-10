@@ -3,13 +3,13 @@ import bcrypt from "bcrypt";
 
 import User from "../models/user.model.js";
 
-export const registerUser = async (request, response) => {
+export const registerUser = async (request, response, next) => {
   const { name, email, password, age } = request.body;
 
   if (await isEmailRegistered(email)) {
     return response
       .status(409)
-      .json({ error: "This email is already registered" });
+      .json({ error: "This email is already registered", data: null });
   }
 
   try {
@@ -17,24 +17,23 @@ export const registerUser = async (request, response) => {
 
     const user = new User({ name, email, password: hashedPassword, age });
     await user.save();
-    const token = createToken(user);
 
-    response.status(200).json({ error: null, token });
+    response.status(200).json({ error: null, data: user.email });
   } catch (error) {
-    response.status(400).json({ error: error });
+    response.status(400).json({ error, data: null });
   }
 };
 
-export const loginUser = async (request, response) => {
+export const loginUser = async (request, response, next) => {
   const { email, password } = request.body;
 
-  const user = await User.findOne({ email });
-  if (!user) {
+  if (!(await isEmailRegistered(email))) {
     return response.status(409).json({
       error: "This email is not registered",
     });
   }
 
+  const user = await User.findOne({ email });
   const isPasswordValid = await bcrypt.compare(password, user.password);
   if (!isPasswordValid) {
     return response.status(409).json({
@@ -44,14 +43,13 @@ export const loginUser = async (request, response) => {
 
   try {
     const token = createToken(user);
-    response.status(200).json({ error: null, token });
+    response.status(200).json({ error: null, data: { token } });
   } catch (error) {
-    response.status(400).json({ error });
+    response.status(400).json({ error: error.message, data: null });
   }
 };
 
 const isEmailRegistered = async (email) => {
   let user = await User.findOne({ email });
-  if (user === null) return false;
-  return true;
+  return user ? true : false;
 };
