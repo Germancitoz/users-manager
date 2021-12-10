@@ -1,5 +1,5 @@
 import app from "./server/index.js";
-import { connectDatabase } from "./services/database.js";
+import connectDatabase from "./services/database.js";
 import Log from "./utils/log.js";
 
 import { serverConfig } from "./config/index.js";

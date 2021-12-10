@@ -2,25 +2,25 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const {
-    SERVER_URL = "http://localhost",
-    SERVER_PORT = 3000,
+  SERVER_URL,
+  SERVER_PORT,
 
-    DATABASE_URL = "mongodb://localhost:27017/testing",
+  DATABASE_URL,
 
-    AUTH_SECRET = "SECRET",
-    AUTH_EXPIRE_TIME = 60 * 60 * 24 * 7,
+  AUTH_SECRET,
+  AUTH_EXPIRE_TIME,
 } = process.env;
 
 export const serverConfig = {
-    URL: SERVER_URL,
-    PORT: SERVER_PORT,
+  URL: SERVER_URL,
+  PORT: SERVER_PORT,
 };
 
 export const databaseConfig = {
-    URL: DATABASE_URL,
+  URL: DATABASE_URL,
 };
 
 export const authConfig = {
-    SECRET: AUTH_SECRET,
-    EXPIRE_TIME: AUTH_EXPIRE_TIME,
+  SECRET: AUTH_SECRET,
+  EXPIRE_TIME: AUTH_EXPIRE_TIME,
 };
