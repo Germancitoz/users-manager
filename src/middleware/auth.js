@@ -3,7 +3,7 @@ import User from "../models/user.model.js";
 import { authConfig } from "../config/index.js";
 
 export default async (request, response, next) => {
-  const token = request.headers.authorization;
+  const token = request.headers.authorization.split(" ")[1]; //remove Bearer from token
 
   if (!token) {
     return response.status(401).json({ error: "Invalid authorization header" });
