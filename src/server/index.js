@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
+import { nodeConfig } from "../config/index.js";
 
 const app = express();
 
@@ -8,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
-app.use(morgan("dev"));
+nodeConfig.ENV === "DEV" ? app.use(morgan("dev")) : null;
 
 //Routes
 import indexRouter from "../routes/index.route.js";

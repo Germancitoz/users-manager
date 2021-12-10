@@ -9,6 +9,8 @@ const {
 
   AUTH_SECRET,
   AUTH_EXPIRE_TIME,
+
+  NODE_ENV,
 } = process.env;
 
 export const serverConfig = {
@@ -23,4 +25,8 @@ export const databaseConfig = {
 export const authConfig = {
   SECRET: AUTH_SECRET,
   EXPIRE_TIME: AUTH_EXPIRE_TIME,
+};
+
+export const nodeConfig = {
+  ENV: NODE_ENV,
 };
