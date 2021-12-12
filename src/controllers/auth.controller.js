@@ -1,5 +1,4 @@
 import { createToken } from "../utils/auth.js";
-import bcrypt from "bcrypt";
 
 import User from "../models/user.model.js";
 
@@ -13,11 +12,8 @@ export const registerUser = async (request, response, next) => {
   }
 
   try {
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const user = new User({ name, email, password: hashedPassword, age });
+    const user = new User({ name, email, password, age });
     await user.save();
-
     response.status(200).json({ error: null, data: user.email });
   } catch (error) {
     response.status(400).json({ error, data: null });
@@ -34,7 +30,7 @@ export const loginUser = async (request, response, next) => {
   }
 
   const user = await User.findOne({ email });
-  const isPasswordValid = await bcrypt.compare(password, user.password);
+  const isPasswordValid = await user.comparePassword(password);
   if (!isPasswordValid) {
     return response.status(409).json({
       error: "This password is incorrect",
